@@ -1,20 +1,19 @@
 # Project README
 
 ## Overview
-This project is a C application for visualizing Discrete Fourier Transform (DFT) using a graphical user interface. It includes features such as loading data, performing DFT, and displaying the results graphically.
+This project is a C application for visualizing Discrete Fourier Transform (FFT) using a graphical user interface. It includes features such as loading data, performing FFT, and displaying the results graphically.
 
 ## Features
 - **Data Loading**: Load data from a text file.
-- **Discrete Fourier Transform (DFT)**: Compute the DFT of the loaded data.
-- **Graphical Display**: Visualize the original data and its DFT coefficients.
+- **Discrete Fourier Transform (FFT)**: Compute the FFT of the loaded data.
+- **Graphical Display**: Visualize the original data and its FFT coefficients.
 - **User Interface**: Interact with the application through a graphical interface.
 
 ## Project Structure
 - **build/**: Contains executable files produced by compiling Main.c.
 - **src/**:
   - **Main.c**: Entry point of the program.
-  - **DFT.h**, **DFT.c**: Header and implementation for DFT calculations.
-  - **GUI.h**, **GUI.c**: Header and implementation for graphical user interface.
+  - **FT.h**: Header and implementation for FFT calculations.
 
 ### Prerequisites
 - C/C++ Compiler and Debugger (GCC, Clang)
@@ -23,7 +22,6 @@ This project is a C application for visualizing Discrete Fourier Transform (DFT)
 - Libraries needed in specific projects:
   - X11: For cross-platform GUI window management on Linux.
   - WINAPI: For Windows-specific GUI functionalities.
-  - ALSA: For audio processing features.
 
 ## Build & Run
 ### Building the Project
