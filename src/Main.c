@@ -12,8 +12,8 @@ TransformedView tv;
 Vector vVales;
 
 Points_Pair points;
-FS dftX;
-FS dftY;
+FS fftX;
+FS fftY;
 
 void Setup(AlxWindow* w){
 	tv = TransformedView_Make(
@@ -30,23 +30,23 @@ void Setup(AlxWindow* w){
 	vVales = Vector_New(sizeof(Vec2));
 	
 	points = DFT_PointsLoad2D("./data/CodingTrainBase2.txt",1);
-	dftX = FFT_CalcFS(points.xs.Memory,points.xs.size);
-	dftY = FFT_CalcFS(points.ys.Memory,points.ys.size);
+	fftX = FFT_CalcFS(points.xs.Memory,points.xs.size);
+	fftY = FFT_CalcFS(points.ys.Memory,points.ys.size);
 }
 void Update(AlxWindow* w){
 	TransformedView_HandlePanZoom(&tv,window.Strokes,GetMouse());
 	Rect r = TransformedView_ScreenWorldRect(&tv,GetScreenRect());
 
-	const double dt = F64_PI2 / (double)dftX.size;
+	const double dt = F64_PI2 / (double)fftX.size;
 	actime += dt;
 
 	Clear(BLACK);
 
-	FS_Render(WINDOW_STD_ARGS,&tv,cxoffset.x,cxoffset.y,&dftX,0.0,actime);
-	FS_Render(WINDOW_STD_ARGS,&tv,cyoffset.x,cyoffset.y,&dftY,F32_PI05,actime);
+	FS_Render(WINDOW_STD_ARGS,&tv,cxoffset.x,cxoffset.y,&fftX,0.0,actime);
+	FS_Render(WINDOW_STD_ARGS,&tv,cyoffset.x,cyoffset.y,&fftY,F32_PI05,actime);
 	
-	const Vec2 outx = FS_Calc(&dftX,0.0,actime);
-	const Vec2 outy = FS_Calc(&dftY,F32_PI05,actime);
+	const Vec2 outx = FS_Calc(&fftX,0.0,actime);
+	const Vec2 outy = FS_Calc(&fftY,F32_PI05,actime);
 	const Vec2 v = {
 		outx.x,
 		outy.y
@@ -84,8 +84,8 @@ void Update(AlxWindow* w){
 void Delete(AlxWindow* w){
 	Vector_Free(&vVales);
 	Points_Pair_Free(&points);
-	FS_Free(&dftX);
-	FS_Free(&dftY);
+	FS_Free(&fftX);
+	FS_Free(&fftY);
 }
 
 int main(){
